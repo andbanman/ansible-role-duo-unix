@@ -1,0 +1,26 @@
+---
+ansible_managed: "This file is managed by Ansible, changes will be overwritten"
+
+# https://duo.com/docs/duounix#linux-distribution-packages
+duo_gpg_key_url: 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc'
+duo_ubuntu_deb_url: 'https://pkg.duosecurity.com/Ubuntu'
+duo_package: 'duo-unix'
+duo_pam_duo_conf: '/etc/duo/pam_duo.conf'
+
+# https://duo.com/docs/duounix#duo-configuration-options
+pam_duo_config:
+  ikey:
+  skey:
+  host:
+  groups:
+  failmode:
+  pushinfo:
+  autopush:
+  motd:
+  prompts:
+  accept_env_factor:
+  fallback_local_ip:
+  https_timeout:
+  send_gecos:
+  gecos_username_pos:
+  gecos_delim:

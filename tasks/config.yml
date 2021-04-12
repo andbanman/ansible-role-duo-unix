@@ -1,0 +1,5 @@
+---
+- name: Install pam_duo config
+  template:
+    src: pam_duo.conf.j2
+    dest: "{{ duo_pam_duo_conf }}"

@@ -1,0 +1,6 @@
+---
+- name: Include ubuntu.yml
+  include_tasks: ubuntu.yml
+
+- name: Include config.yml
+  include_tasks: config.yml
