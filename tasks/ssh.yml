@@ -1,9 +1,5 @@
 ---
-#
-# This task cribbed from  jlafon/ansible-duo-security
-# Copyright (c) 2013 Jharrod LaFon
-#
-- name: Disable PermitTunnel and AllowTcpForwarding
+- name: Configure SSH for PAM
   lineinfile:
     dest: /etc/ssh/sshd_config
     state: present
@@ -11,6 +7,23 @@
     line: "{{ item.key }} {{ item.value }}"
     insertafter: EOF
   with_items:
-    - { key: 'PermitTunnel', value: 'no' }
-    - { key: 'AllowTcpForwarding', value: 'no' }
+    - { key: 'UsePAM', value: 'yes' }
+    - { key: 'ChallengeResponseAuthentication', value: 'yes' }
+    - { key: 'UseDNS', value: 'no' }
+  when: 'duo_config_pam'
+  notify: restart ssh
+
+- name: Configure SSH for Public key authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    insertafter: EOF
+  with_items:
+    - { key: 'PubkeyAuthentication', value: 'yes' }
+    # Don't disable passwords to prevent accidental lockout
+    #- { key: 'PasswordAuthentication', value: 'no' }
+    - { key: 'AuthenticationMethods', value: 'publickey,keyboard-interactive' }
+  when: 'duo_config_pubkey'
   notify: restart ssh

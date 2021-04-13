@@ -6,6 +6,11 @@ duo_gpg_key_url: 'https://duo.com/DUO-GPG-PUBLIC-KEY.asc'
 duo_ubuntu_deb_url: 'https://pkg.duosecurity.com/Ubuntu'
 duo_package: 'duo-unix'
 duo_pam_duo_conf: '/etc/duo/pam_duo.conf'
+duo_pam_module_path: '/lib64/security/pam_duo.so'
+
+# configure duo for different auth schemes
+duo_config_pam: true
+duo_config_pubkey: false
 
 # https://duo.com/docs/duounix#duo-configuration-options
 pam_duo_config:
