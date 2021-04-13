@@ -1,0 +1,16 @@
+---
+#
+# This task cribbed from  jlafon/ansible-duo-security
+# Copyright (c) 2013 Jharrod LaFon
+#
+- name: Disable PermitTunnel and AllowTcpForwarding
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    insertafter: EOF
+  with_items:
+    - { key: 'PermitTunnel', value: 'no' }
+    - { key: 'AllowTcpForwarding', value: 'no' }
+  notify: restart ssh

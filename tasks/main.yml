@@ -1,6 +1,4 @@
 ---
-- name: Include ubuntu.yml
-  include_tasks: ubuntu.yml
-
-- name: Include config.yml
-  include_tasks: config.yml
+- include_tasks: ubuntu.yml
+- include_tasks: config.yml
+- include_tasks: ssh.yml
