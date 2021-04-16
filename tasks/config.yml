@@ -1,5 +1,12 @@
 ---
 - name: Install pam_duo config
+  when: 'duo_config_pam'
   template:
-    src: pam_duo.conf.j2
+    src: duo.conf.j2
     dest: "{{ duo_pam_duo_conf }}"
+
+- name: Install pam_duo config
+  when: 'duo_config_login'
+  template:
+    src: duo.conf.j2
+    dest: "{{ duo_login_duo_conf }}"
