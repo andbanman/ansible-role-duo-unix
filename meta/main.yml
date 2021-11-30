@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: slurm
+  role_name: abanman.duo
   author: Andrew Banman
   description: DUO MFA Installation and Configuration
   company: PNRI
